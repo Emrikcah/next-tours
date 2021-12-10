@@ -15,6 +15,7 @@ export function Home() {
    const [tours, setTours] = useState([]);
    const [loading, setLoading] = useState(false);
 
+   //return new array with the filtered out ids 
    const deleteTours = (id) => {
       const newTours = tours.filter((tour) => {
          return tour.id !== id;
@@ -22,6 +23,7 @@ export function Home() {
       setTours(newTours);
    };
 
+   //pull in the data from api and set loading to true/false
    const getData = async () => {
       setLoading(true);
       try {
@@ -43,6 +45,7 @@ export function Home() {
    const loaderCss = css`
       display: block;
    `;
+
    //if loading do this
    if (loading) {
       return (
