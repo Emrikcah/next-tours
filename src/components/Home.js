@@ -22,18 +22,19 @@ export function Home() {
       setTours(newTours);
    };
 
-   useEffect(() => {
+   const getData = async () => {
       setLoading(true);
-      const getData = async () => {
-         try {
-            const res = await axios.get(url);
-            setTours(res.data);
-            setLoading(false);
-         } catch (error) {
-            console.log(error);
-            setLoading(false);
-         }
-      };
+      try {
+         const res = await axios.get(url);
+         setTours(res.data);
+         setLoading(false);
+      } catch (error) {
+         console.log(error);
+         setLoading(false);
+      }
+   };
+
+   useEffect(() => {
       getData();
    }, []);
    
@@ -55,7 +56,7 @@ export function Home() {
    if (tours.length === 0) {
      return (
         <main className='main'>
-           {/* <NoTours getData={getData}/> */}
+           <NoTours getData={getData}/>
         </main>
      )
    }
@@ -75,5 +76,4 @@ export function Home() {
    );
 }
 
-//TODO
-//take getData out of useEffect so it can be passed via prop
+
